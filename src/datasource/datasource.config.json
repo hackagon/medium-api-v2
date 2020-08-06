@@ -1,0 +1,16 @@
+{
+  "local": {
+    "host": "localhost",
+    "port": 3306,
+    "database": "medium",
+    "username": "root",
+    "password": "hackagon"
+  },
+  "production": {
+    "host": "afs-medium.cefv5ijogza1.us-east-2.rds.amazonaws.com",
+    "port": 3306,
+    "database": "medium",
+    "username": "admin",
+    "password": "admin123"
+  }
+}
