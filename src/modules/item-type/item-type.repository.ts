@@ -1,5 +1,5 @@
 import { EntityRepository, Repository } from 'typeorm';
-import { ItemType } from './item-type.entity';
+import { ItemTypeEntity } from './item-type.entity';
 
-@EntityRepository(ItemType)
-export class ItemTypeRepository extends Repository<ItemType> { }
+@EntityRepository(ItemTypeEntity)
+export class ItemTypeRepository extends Repository<ItemTypeEntity> { }

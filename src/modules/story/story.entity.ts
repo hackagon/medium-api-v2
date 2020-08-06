@@ -1,13 +1,14 @@
 import {
   Entity, BaseEntity, PrimaryGeneratedColumn,
   Column, CreateDateColumn, UpdateDateColumn,
-  BeforeInsert, BeforeUpdate
+  BeforeInsert, BeforeUpdate, ManyToOne, JoinColumn
 } from "typeorm";
 import { StoryStatus } from './story.dto';
 import * as _ from "lodash";
 import { cleanAccents } from "../../utils/handleString";
 import { OneToMany } from 'typeorm';
 import { ItemEntity } from '../item/item.entity';
+import { UserEntity } from '../user/user.entity';
 
 @Entity({
   name: "story"
@@ -15,6 +16,12 @@ import { ItemEntity } from '../item/item.entity';
 export class StoryEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @ManyToOne(type => UserEntity, user => user.stories, {
+    onDelete: "SET NULL"
+  })
+  @JoinColumn({ name: "user_id" })
+  userId: number;
 
   @Column()
   title: string;

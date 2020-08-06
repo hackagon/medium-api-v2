@@ -2,6 +2,7 @@ import { Controller, Get, Param, Post, Body } from "@nestjs/common";
 import { UserEntity } from './user.entity';
 import { UserService } from './user.service';
 import { CreateUserDTO } from './user.dto';
+import { StoryEntity } from '../story/story.entity';
 
 @Controller("/users")
 export class UserController {
@@ -17,6 +18,11 @@ export class UserController {
   @Get("/:id")
   async getUserById(@Param("id") id: number): Promise<UserEntity> {
     return await this.userService.getUserById(id);
+  }
+
+  @Get("/:id/stories")
+  async getStoriesByUserId(@Param("id") id: number): Promise<StoryEntity[]> {
+    return await this.userService.getStoriesByUserId(id);
   }
 
   @Post("/")

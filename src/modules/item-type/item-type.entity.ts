@@ -1,8 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, BaseEntity } from 'typeorm';
 import * as _ from 'lodash';
 
-@Entity()
-export class ItemType extends BaseEntity {
+@Entity({
+  name: "item_type"
+})
+export class ItemTypeEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -22,7 +24,7 @@ export class ItemType extends BaseEntity {
   })
   updatedAt: Date;
 
-  constructor(partial: Partial<ItemType>) {
+  constructor(partial: Partial<ItemTypeEntity>) {
     super();
     _.assign(this, partial);
   }

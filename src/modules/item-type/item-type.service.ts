@@ -1,7 +1,7 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ItemTypeRepository } from './item-type.repository';
-import { ItemType } from './item-type.entity';
+import { ItemTypeEntity } from './item-type.entity';
 import { getConnection } from 'typeorm';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -34,11 +34,11 @@ export class ItemTypeService implements OnModuleInit {
     await BBPromise.map(queries, (sqlQuery: string) => getConnection().query(sqlQuery));
   }
 
-  async getItemTypes(): Promise<ItemType[]> {
+  async getItemTypes(): Promise<ItemTypeEntity[]> {
     return await this.itemTypeRepository.find();
   }
 
-  async getItemTypeById(id: number): Promise<ItemType> {
+  async getItemTypeById(id: number): Promise<ItemTypeEntity> {
     return await this.itemTypeRepository.findOne(id);
   }
 }

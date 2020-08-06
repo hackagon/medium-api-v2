@@ -3,11 +3,14 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { UserRepository } from './user.repository';
 import { UserEntity } from './user.entity';
 import { CreateUserDTO } from './user.dto';
+import { StoryEntity } from '../story/story.entity';
+import { StoryRepository } from '../story/story.repository';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(UserRepository) private userRepo: UserRepository
+    @InjectRepository(UserRepository) private userRepo: UserRepository,
+    @InjectRepository(StoryRepository) private storyRepo: StoryRepository
   ) {
   }
 
@@ -25,5 +28,13 @@ export class UserService {
 
   async getUsers(): Promise<UserEntity[]> {
     return await this.userRepo.find();
+  }
+
+  async getStoriesByUserId(id: number): Promise<StoryEntity[]> {
+    return this.storyRepo.find({
+      where: {
+        userId: id
+      }
+    })
   }
 }
