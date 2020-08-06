@@ -1,7 +1,6 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 import * as datasource from "./datasource.config.json"
 
-console.log(datasource)
 const { host, port, database, username, password } = datasource[process.env.NODE_ENV] || datasource.local
 
 export const typeOrmConfig: TypeOrmModuleOptions = {

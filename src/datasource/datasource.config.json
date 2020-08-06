@@ -7,7 +7,7 @@
     "password": "hackagon"
   },
   "staging": {
-    "host": "afs-medium.cefv5ijogza1.us-east-2.rds.amazonaws.com",
+    "host": "afs.cxaedk6vphqg.us-east-2.rds.amazonaws.com",
     "port": 3306,
     "database": "medium",
     "username": "admin",
