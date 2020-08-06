@@ -29,6 +29,7 @@
     "@nestjs/typeorm": "^7.1.0",
     "@nestjsx/crud": "^4.6.2",
     "@nestjsx/crud-typeorm": "^4.6.2",
+    "@types/bluebird": "^3.5.32",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "mysql": "^2.18.1",

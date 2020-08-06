@@ -4,6 +4,7 @@ import { ItemRepository } from "./item.repository";
 import { ItemEntity } from "./item.entity";
 import { CreateItemDTO, UpdateItemDTO } from "./item.dto";
 import * as _ from "lodash";
+import * as BBPromise from "bluebird";
 
 @Injectable()
 export class ItemService {
@@ -37,5 +38,26 @@ export class ItemService {
 
     await foundItem.remove()
     return foundItem;
+  }
+
+  async moveItemPositions(storyId: number, data: any): Promise<any> {
+    const newItemPositions = _.get(data, "items", []);
+
+    const items = await this.itemRepository.find({ storyId });
+    return BBPromise.map(items, item => {
+      const itemPosition = _.find(newItemPositions, itemPosition => {
+        return itemPosition.id === item.id
+      })
+      item.displayIndex = itemPosition.displayIndex
+
+      return item.save()
+    })
+      .then(res => {
+        return {
+          message: "Update position successfully",
+          items: _.map(res, item => _.pick(item, ["id", "displayIndex"]))
+        }
+      })
+      .catch(err => err)
   }
 }
